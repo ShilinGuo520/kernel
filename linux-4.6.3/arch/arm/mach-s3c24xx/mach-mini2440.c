@@ -543,7 +543,7 @@ static void __init mini2440_init_time(void)
  * 0-9 LCD configuration
  *
  */
-static char mini2440_features_str[12] __initdata = "0tb";
+static char mini2440_features_str[12] __initdata = "1tb";
 
 static int __init mini2440_features_setup(char *str)
 {
@@ -636,11 +636,11 @@ static void __init mini2440_init(void)
 	mini2440_parse_features(&features, mini2440_features_str);
 
 	/* turn LCD on */
-	s3c_gpio_cfgpin(S3C2410_GPC(0), S3C2410_GPC0_LEND);
+	s3c_gpio_cfgpin(S3C2410_GPG(4), S3C2410_GPG4_LEND);
 
 	/* Turn the backlight early on */
-	WARN_ON(gpio_request_one(S3C2410_GPG(4), GPIOF_OUT_INIT_HIGH, NULL));
-	gpio_free(S3C2410_GPG(4));
+	WARN_ON(gpio_request_one(S3C2410_GPB(0), GPIOF_OUT_INIT_HIGH, NULL));
+	gpio_free(S3C2410_GPB(0));
 
 	/* remove pullup on optional PWM backlight -- unused on 3.5 and 7"s */
 	gpio_request_one(S3C2410_GPB(1), GPIOF_IN, NULL);
@@ -661,7 +661,7 @@ static void __init mini2440_init(void)
 		printk(KERN_INFO "MINI2440: LCD");
 		for (li = 0; li < ARRAY_SIZE(mini2440_lcd_cfg); li++)
 			if (li == features.lcd_index)
-				printk(" [%d:%dx%d]", li,
+				printk(" select is [%d:%dx%d]", li,
 					mini2440_lcd_cfg[li].width,
 					mini2440_lcd_cfg[li].height);
 			else
