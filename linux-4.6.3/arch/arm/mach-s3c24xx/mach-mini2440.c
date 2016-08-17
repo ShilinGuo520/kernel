@@ -142,11 +142,11 @@ static struct s3c2410fb_display mini2440_lcd_cfg[] __initdata = {
 				   S3C2410_LCDCON5_INVVDEN |
 				   S3C2410_LCDCON5_PWREN),
 	},
-	[1] = { /* mini2440 + 7" TFT + touchscreen */
+	[1] = { /* mini2440 + 4.3" TFT + touchscreen */
 		_LCD_DECLARE(
 			10,			/* the 7" runs slower */
-			800, 40, 40, 48, 	/* x timing */
-			480, 29, 3, 3,		/* y timing */
+			480, 40, 40, 48, 	/* x timing */
+			272, 29, 3, 3,		/* y timing */
 			50),			/* refresh rate */
 		.lcdcon5	= (S3C2410_LCDCON5_FRM565 |
 				   S3C2410_LCDCON5_INVVLINE |
